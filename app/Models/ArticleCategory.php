@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class ArticleCategory extends Model
 {
     use HasFactory;
 
-    public $fillable=['name','order','active'];
+    public $table='article_category';
+
+    public $fillable=['article_id','category_id'];
+
 }

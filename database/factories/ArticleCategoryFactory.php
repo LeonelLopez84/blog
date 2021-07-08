@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Arcticle_Category;
+use App\Models\ArticleCategory;
+use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ArticleCategoryFactory extends Factory
@@ -12,7 +14,7 @@ class ArticleCategoryFactory extends Factory
      *
      * @var string
      */
-    protected $model = Arcticle_Category::class;
+    protected $model = ArticleCategory::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +24,8 @@ class ArticleCategoryFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'article_id'=>Article::all()->random(),
+            'category_id'=>Category::all()->random()
         ];
     }
 }

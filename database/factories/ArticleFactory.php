@@ -25,7 +25,7 @@ class ArticleFactory extends Factory
         return [
             'title' => $this->faker->sentence(),
             'text' => $this->faker->text(200),
-            'img' => $this->faker->imageUrl(640, 480),
+            'thumbnail' => $this->faker->image('storage/app/public',640,480, null, false),
             'user_id'=>User::all()->random()->id
         ];
     }

@@ -15,6 +15,15 @@ class CreateArticleCategoryTable extends Migration
     {
         Schema::create('article_category', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('article_id')->index()
+                ->constrained('articles')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('category_id')->index()
+                ->constrained('categories')
+                ->onUpdate('no action')
+                ->onDelete('no action');
+
             $table->timestamps();
         });
     }
@@ -26,6 +35,6 @@ class CreateArticleCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('arcticle__categories');
+        Schema::dropIfExists('article_category');
     }
 }

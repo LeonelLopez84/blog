@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Article;
 use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +23,8 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=>$this->faker->image('storage/app/public',640,480, null, false),
+            'article_id'=>Article::all()->random()
         ];
     }
 }

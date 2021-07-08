@@ -15,6 +15,13 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('order')->unsigned()->default(0);
+            $table->tinyInteger('active')->default(0);
+            $table->foreignId('articles_id')->index()
+                ->constrained('articles')
+                ->onUpdate('no action')
+                ->onDelete('no action');
             $table->timestamps();
         });
     }

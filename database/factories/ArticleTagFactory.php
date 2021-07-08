@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Article;
 use App\Models\ArticleTag;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ArticleTagFactory extends Factory
@@ -22,7 +24,8 @@ class ArticleTagFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'article_id'=>Article::all()->random(),
+            'tag_id'=>Tag::all()->random()
         ];
     }
 }

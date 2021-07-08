@@ -17,8 +17,11 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->text('text')->nullable();
-            $table->string('img')->nullable();
-            $table->foreignId('user_id')->constrained('users');
+            $table->string('thumbnail')->nullable();
+            $table->foreignId('user_id')->index()
+                ->constrained('users')
+                ->onUpdate('no action')
+                ->onDelete('no action');
             $table->timestamps();
         });
     }

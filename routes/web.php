@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/welcome',function (){
     return view('welcome');
 });
-Route::get('/',[\App\Http\Controllers\ArticlesController::class,'index'])->name('home');
+Route::get('/',[SiteController::class,'index'])->name('home');
+Route::get('/article/{slug}',[SiteController::class,'show'])->name('article');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

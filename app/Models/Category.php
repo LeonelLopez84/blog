@@ -10,4 +10,9 @@ class Category extends Model
     use HasFactory;
 
     public $fillable=['name','img'];
+
+    public function articles()
+    {
+        return $this->belongsToMany(Article::class);
+    }
 }

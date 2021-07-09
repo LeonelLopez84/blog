@@ -22,10 +22,12 @@ class ArticleFactory extends Factory
      */
     public function definition()
     {
+        $title=$this->faker->sentence();
         return [
-            'title' => $this->faker->sentence(),
+            'title' => $title,
+            'slug' => $title,
             'text' => $this->faker->text(200),
-            'thumbnail' => $this->faker->image('storage/app/public',640,480, null, false),
+            'thumbnail' => $this->faker->image('storage/app/images',640,480, null, false),
             'user_id'=>User::all()->random()->id
         ];
     }

@@ -4,12 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
 
 class Article extends Model
 {
     use HasFactory;
 
     public $fillable=['title','slug','text','user_id','img'];
+
+    public function setSlugAttribute($value)
+    {
+        $this->attributes['slug'] = Str::slug($value,'-');
+    }
 
     public function user()
     {
@@ -18,6 +25,6 @@ class Article extends Model
 
     public function categories()
     {
-
+        return $this->belongsToMany(Category::class);
     }
 }

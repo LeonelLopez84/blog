@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\ArticleCategory;
 use App\Models\ArticleTag;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Tag;
 use App\Models\User;
 
@@ -23,11 +24,9 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         Category::factory(10)->create();
         Tag::factory(10)->create();
-        Article::factory(100)->create();
+        Article::factory(50)->create();
         ArticleCategory::factory(10)->create();
         ArticleTag::factory(10)->create();
-
-
-
+        Image::factory(50)->create();
     }
 }

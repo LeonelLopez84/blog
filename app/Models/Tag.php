@@ -10,4 +10,9 @@ class Tag extends Model
     use HasFactory;
 
     public $fillable=['name','order','active'];
+
+    public function article()
+    {
+        return $this->belongsToMany(Article::class);
+    }
 }

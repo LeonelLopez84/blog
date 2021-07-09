@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 
-class ArticlesController extends Controller
+class SiteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles=Article::paginate(5);
+        $articles=Article::paginate(10);
 
         return view('home',['articles'=>$articles]);
     }
@@ -46,9 +46,11 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $article=Article::where('slug',$slug)->first();
+
+        return view('article',['article'=>$article]);
     }
 
     /**

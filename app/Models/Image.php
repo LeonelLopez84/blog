@@ -10,4 +10,9 @@ class Image extends Model
     use HasFactory;
 
     public $fillable=['name','order','active'];
+
+    public function articles()
+    {
+        return $this->belongsTo(Article::class);
+    }
 }

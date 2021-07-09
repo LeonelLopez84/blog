@@ -18,7 +18,7 @@ class CreateImagesTable extends Migration
             $table->string('name');
             $table->integer('order')->unsigned()->default(0);
             $table->tinyInteger('active')->default(0);
-            $table->foreignId('articles_id')->index()
+            $table->foreignId('article_id')->index()
                 ->constrained('articles')
                 ->onUpdate('no action')
                 ->onDelete('no action');

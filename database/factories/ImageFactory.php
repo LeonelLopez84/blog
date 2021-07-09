@@ -23,7 +23,7 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            'name'=>$this->faker->image('storage/app/public',640,480, null, false),
+            'name'=>$this->faker->image('storage/app/images',640,480, null, false),
             'article_id'=>Article::all()->random()
         ];
     }

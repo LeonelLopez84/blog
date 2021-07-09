@@ -1,33 +1,19 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Blog Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-        <!-- Styles -->
-        @livewireStyles
-    </head>
-    <body>
-    <livewire:counter title="'Lord of the rings'" />
-        <div class="md:container md:mx-auto">
-                @foreach($articles as $article)
-                    <div class="flex">
-                        <div><img class="inline" src="{{$article->img}}"> </div>
-                        <div>
-                            <p class="font-semibold">{{$article->id}} - {{$article->title}}</p>
-                            <p><i>{{$article->user->name}}</i></p>
-                            <p>{{$article->text}}</p>
-                            <p>{{$article->created_at}}</p>
-                        </div>
+<x-guest-layout>
+        <div class="md:container md:mx-auto p-6">
+            @foreach($articles as $article)
+                <div class="flex p-6">
+                    <div class="flex-1">
+                        <img class="inline w-auto" src="{{asset('images/'.$article->thumbnail)}}">
                     </div>
-                @endforeach
-                    {{$articles->links()}}
-            </div>
-        @livewireScripts
-    </body>
-</html>
+                    <div class="flex-1 p-6">
+                        <p class="font-semibold">{{$article->id}} - {{$article->title}}</p>
+                        <p><i>{{$article->user->name}}</i></p>
+                        <p>{{$article->text}}</p>
+                        <p><a href="article/{{$article->slug}}" target="_blank">VER</a></p>
+                        <p>{{$article->created_at->diffForHumans()}}</p>
+                    </div>
+                </div>
+            @endforeach
+            <p>{{$articles->links()}}</p>
+        </div>
+</x-guest-layout>

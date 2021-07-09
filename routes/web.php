@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SiteController;
+use App\Http\Controllers\Admin\ArticleController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +18,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/welcome',function (){
     return view('welcome');
 });
-Route::get('/',[\App\Http\Controllers\ArticlesController::class,'index'])->name('home');
+Route::get('/',[SiteController::class,'index'])->name('home');
+Route::get('/article/{slug}',[SiteController::class,'show'])->name('article');
+
+Route::prefix('admin')->group(function(){
+    Route::get('/article/list',[ArticleController::class,'index'])->name('article.list');
+    Route::get('/article/create',[ArticleController::class,'create'])->name('article.create');
+    Route::get('/article/edit/{id}',[ArticleController::class,'edit'])->name('article.edit');
+});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

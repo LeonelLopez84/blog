@@ -26,7 +26,7 @@
             {{$slot}}
             </div>
         </div>
-        
+
         @include('admin.sidebar')
 
         @livewireScripts

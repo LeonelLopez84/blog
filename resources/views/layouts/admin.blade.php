@@ -14,21 +14,23 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
         @livewireStyles
         <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
     </head>
     <body class="bg-gray-100 font-sans leading-normal tracking-normal">
-    <div class="flex md:flex-row-reverse flex-wrap">
+        <div class="flex md:flex-row-reverse flex-wrap">
 
-        <!--Main Content-->
-        <div class="w-full md:w-4/5 bg-gray-100">
-            <div class="container bg-gray-100 py-6 px-6">
-            {{$slot}}
+            <!--Main Content-->
+            <div class="w-full md:w-4/5 bg-gray-100">
+                <div class="container bg-gray-100 py-6 px-6">
+                {{$slot}}
+                </div>
             </div>
+
+            @include('admin.sidebar')
+
+            @livewireScripts
+            <script src="{{ mix('js/app.js') }}" defer></script>
+            <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
         </div>
-
-        @include('admin.sidebar')
-
-        @livewireScripts
     </body>
 </html>

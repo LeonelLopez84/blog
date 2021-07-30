@@ -1,10 +1,10 @@
 <x-guest-layout>
-    <div class="md:container md:mx-auto p-6">
-        <div class="flex p-6">
-            <div class="flex-1">
+    <div class="md:container md:mx-auto">
+        <div class="justify-self-auto">
+            <div class="p-6">
                 <img class="inline w-auto" src="{{asset('images/'.$article->thumbnail)}}">
             </div>
-            <div class="flex-1 p-6">
+            <div class="p-6">
                 <p class="font-semibold">{{$article->id}} - {{$article->title}}</p>
                 <p><i>{{$article->user->name}}</i></p>
                 <p>{{$article->text}}</p>

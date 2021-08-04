@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Livewire\Post\Show;
+use App\Http\Livewire\Post\PostForm;
 
 
 /*
@@ -20,6 +22,10 @@ Route::get('/welcome',function (){
 });
 Route::get('/',[SiteController::class,'index'])->name('home');
 Route::get('/article/{slug}',[SiteController::class,'show'])->name('article');
+// Example Component
+Route::get('/post/id/{id}', Show::class);
+Route::get('/post/create', PostForm::class);
+
 
 Route::prefix('admin')->group(function(){
     Route::get('/article/list',[ArticleController::class,'index'])->name('article.list');
@@ -27,6 +33,8 @@ Route::prefix('admin')->group(function(){
     Route::get('/article/edit/{id}',[ArticleController::class,'edit'])->name('article.edit');
     Route::post('/article/store',[ArticleController::class,'store'])->name('article.store');
 });
+
+
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

@@ -16,7 +16,9 @@ class SiteController extends Controller
     {
         $articles=Article::paginate(10);
 
-        return view('home',['articles'=>$articles]);
+        return view('home',['articles'=>$articles])
+            ->layout('layouts.guest')
+            ->layoutData(['title'=>'Lista de Articulos']);
     }
 
     /**
@@ -50,7 +52,9 @@ class SiteController extends Controller
     {
         $article=Article::where('slug',$slug)->first();
 
-        return view('article',['article'=>$article]);
+        return view('article',['article'=>$article])
+                ->layout('layouts.guest')
+                ->layoutData(['title'=>'Lista de Articulos']);
     }
 
     /**

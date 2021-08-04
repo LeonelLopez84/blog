@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
 
 class ArticleController extends Controller
@@ -15,9 +17,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles=Article::paginate(15);
+        $articles=Article::orderBy('id', 'desc')->paginate(15);
 
-        return view('admin.article.list',['articles'=>$articles]);
+        return view('admin.article.list',['articles'=>$articles])
+            ->layout('layouts.admin')
+            ->layoutData(['title'=>'Lista de Articulos']);
     }
 
     /**
@@ -36,9 +40,23 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        dd($request->all());
+        if($file = $request->file("thumbnail"))
+        {
+            $Article=new Article();
+            $Article->title = $request->title;
+            $Article->slug = $request->title;
+            $Article->text = $request->text;
+            $Article->user_id = Auth::id();
+
+            $name = time().'.'.$file->getClientOriginalExtension();
+            $path = $file->storeAs('images',$name);
+            $Article->thumbnail = $name;
+            $Article->save();
+        }
+
+        return redirect()->route('article.list');
     }
 
     /**

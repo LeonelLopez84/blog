@@ -3,6 +3,7 @@
         <div class="justify-self-auto">
             <h2 class="p-6">Crear Articulo</h2>
             <livewire:article.form />
+
         </div>
     </div>
 </x-admin-layout>

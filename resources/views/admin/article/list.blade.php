@@ -13,6 +13,7 @@
                     <th class="border">Author</th>
                     <th class="border">Edit</th>
                     <th class="border">Link</th>
+                    <th class="border">Delete</th>
                     <th class="border">Created at</th>
                 </tr>
             </thead>
@@ -32,6 +33,7 @@
                             Ver <i class="far fa-eye"></i>
                         </a>
                     </td>
+                    <td class="p-2 border"><livewire:article.delete-article :post="$article"></td>
                     <td class="p-2 border">{{$article->created_at}}</td>
                 </tr>
             @endforeach
